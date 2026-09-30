@@ -25,14 +25,17 @@ jobs:
         run: |
           pip install strix-agent
 
-      - name: Run Strix Penetration Testing (Exploit & Report)
+      - name: Run Strix Penetration Testing (Zhipu AI)
         env:
-          # Mengatur model GLM-5.3-Flash via Environment Variable (sesuai spesifikasi litellm/strix)
-          STRIX_LLM: "openrouter/z-ai/glm-5.3-flash" # Atau sesuaikan provider Anda (misal: "together_ai/zai-org/glm-5.3-flash")
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          # Format model dibaca sebagai OpenAI proxy oleh LiteLLM
+          STRIX_LLM: "openai/glm-5.3-flash"
+          
+          # BASE URL UNTUK ZHIPU (Coding Plan / BigModel API)
+          LLM_API_BASE: "https://open.bigmodel.cn/api/paas/v4"
+          
+          # Masukkan API Key Zhipu Anda yang disimpan di GitHub Secrets
+          OPENAI_API_KEY: ${{ secrets.LLM_API_KEY }}
         run: |
-          # Perintah CLI yang valid sesuai argumen resmi Strix
-          # --scan-mode deep memicu siklus eksploitasi penuh (ReAct loop)
           strix -n \
             --target . \
             --scan-mode deep \
