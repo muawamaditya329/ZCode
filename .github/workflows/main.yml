@@ -1,0 +1,39 @@
+name: Strix AI Penetration Testing
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  strix-exploit-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Strix CLI
+        run: |
+          pip install strix-agent
+
+      - name: Run Strix Penetration Testing (Exploit & Report)
+        env:
+          STRIX_LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+        run: |
+          # Jalankan Strix dengan fokus mengeksploitasi kerentanan pada kode lokal (.)
+          # Menggunakan GLM-5.3-Flash untuk simulasi serangan otomatis
+          strix -n \
+            --target . \
+            --model "glm-5.3-flash" \
+            --task exploit \
+            --report-format stdout \
+            --report-level detailed
