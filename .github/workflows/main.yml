@@ -28,7 +28,7 @@ jobs:
       - name: Run Strix Penetration Testing (Zhipu AI)
         env:
           # Format model dibaca sebagai OpenAI proxy oleh LiteLLM
-          STRIX_LLM: "openai/glm-5.3-flash"
+          STRIX_LLM: "z-ai/glm-5.3-flash"
           
           # BASE URL UNTUK ZHIPU (Coding Plan / BigModel API)
           LLM_API_BASE: "https://open.bigmodel.cn/api/paas/v4"
