@@ -36,7 +36,7 @@ jobs:
           # Masukkan API Key Zhipu Anda yang disimpan di GitHub Secrets
           OPENAI_API_KEY: ${{ secrets.LLM_API_KEY }}
         run: |
-          strix -n \
+          strix \
             --target . \
             --scan-mode deep \
             --scope-mode full
