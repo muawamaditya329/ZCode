@@ -27,13 +27,13 @@ jobs:
 
       - name: Run Strix Penetration Testing (Exploit & Report)
         env:
-          STRIX_LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          # Mengatur model GLM-5.3-Flash via Environment Variable (sesuai spesifikasi litellm/strix)
+          STRIX_LLM: "openrouter/z-ai/glm-5.3-flash" # Atau sesuaikan provider Anda (misal: "together_ai/zai-org/glm-5.3-flash")
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
         run: |
-          # Jalankan Strix dengan fokus mengeksploitasi kerentanan pada kode lokal (.)
-          # Menggunakan GLM-5.3-Flash untuk simulasi serangan otomatis
+          # Perintah CLI yang valid sesuai argumen resmi Strix
+          # --scan-mode deep memicu siklus eksploitasi penuh (ReAct loop)
           strix -n \
             --target . \
-            --model "glm-5.3-flash" \
-            --task exploit \
-            --report-format stdout \
-            --report-level detailed
+            --scan-mode deep \
+            --scope-mode full
